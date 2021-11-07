@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'home.dart';
-
-class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
+class Register extends StatelessWidget {
+  Register({Key? key}) : super(key: key);
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -15,7 +13,7 @@ class Login extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       home: Scaffold(
-        appBar: AppBar(title: const Text("Log In")),
+        appBar: AppBar(title: const Text("Register")),
         body: const Center(child: MyStatefulWidget()),
       ),
     );
@@ -76,6 +74,22 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   return null;
                 },
               )),
+          SizedBox(
+              width: 300,
+              child: TextFormField(
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: const InputDecoration(
+                  hintText: 'Confirm Password',
+                ),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
+              )),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: SizedBox(
@@ -86,11 +100,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     // the form is invalid.
                     if (_formKey.currentState!.validate()) {
                       // Process data.
-                      var navigationResult = Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const Home()));
                     }
                   },
-                  child: const Text('Log In'),
+                  child: const Text('Register'),
                 )),
           ),
         ],

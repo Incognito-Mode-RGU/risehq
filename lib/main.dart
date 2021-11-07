@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rise_hq/register.dart';
 
 import 'login.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         // primarySwatch: Colors.blue, #D0CECE
         primarySwatch: Colors.grey,
+        brightness: Brightness.dark,
       ),
       home: const MyHomePage(title: 'Rise HQ'),
     );
@@ -98,19 +100,35 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
             Text(
-              '$_counter',
+              'Rise HQ',
               style: Theme.of(context).textTheme.headline4,
             ),
+            SizedBox(
+                width: 100,
+                child: ElevatedButton(
+                  onPressed: () {
+                    var navigationResult = Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Login()));
+                  },
+                  child: const Text('Login'),
+                )),
+            SizedBox(
+                width: 100,
+                child: ElevatedButton(
+                  onPressed: () {
+                    var navigationResult = Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Register()));
+                  },
+                  child: const Text('Register'),
+                ))
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async{
-          var navigationResult = await Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+        onPressed: () async {
+          var navigationResult = await Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Login()));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
