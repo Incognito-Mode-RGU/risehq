@@ -10,10 +10,10 @@ class Home extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.grey,
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
       ),
       home: Scaffold(
-        appBar: AppBar(title: const Text("Log In")),
+        appBar: AppBar(title: const Text("Rise HQ")),
         body: const Center(
           child: Text("home screen"),
         ),
@@ -23,7 +23,7 @@ class Home extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const MyApp()));
           },
           // child: const Icon(Icons.add),
-          child: const ImageIcon(AssetImage('assets/RiseHQBlackLogo.png')),
+          child: const Image(image: AssetImage('assets/RiseHQBlackLogo.png')),
         ), // This trailing comma makes auto-formatting nicer for build methods.
         drawer: Drawer(
           // Add a ListView to the drawer. This ensures the user can scroll
@@ -33,14 +33,14 @@ class Home extends StatelessWidget {
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: [
-              SizedBox(
+              const SizedBox(
                   height: 100,
                   child: DrawerHeader(
-                    // decoration: BoxDecoration(
-                    //   color: Colors.blue,
-                    // ),
-                    child: Text('Drawer Header',
-                        style: Theme.of(context).textTheme.headline6),
+                    child: Text('Drawer Menu',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                        ),
+                    ),
                   )),
               ListTile(
                 title: const Text('Your Profile'),
