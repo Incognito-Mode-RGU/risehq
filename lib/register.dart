@@ -49,11 +49,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               width: 300,
               child: TextFormField(
                 decoration: const InputDecoration(
-                  hintText: 'Username',
+                  hintText: 'Name',
                 ),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter your username';
+                    return 'Please enter your name';
+                  }
+                  return null;
+                },
+              )),
+          SizedBox(
+              width: 300,
+              child: TextFormField(
+
+                decoration: const InputDecoration(
+                  hintText: 'Email',
+                ),
+                // validator: (value) => EmailValidator.validate(value) ? null : "Please enter a valid email",
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
                   }
                   return null;
                 },

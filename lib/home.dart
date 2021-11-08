@@ -36,7 +36,7 @@ class Home extends StatelessWidget {
               const SizedBox(
                   height: 100,
                   child: DrawerHeader(
-                    child: Text('Drawer Menu',
+                    child: Text('Hello NAME',
                         style: TextStyle(
                           fontSize: 20.0,
                         ),
