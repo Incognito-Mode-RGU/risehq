@@ -1,40 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'main.dart';
 
-class My_profile extends StatelessWidget {
+class My_profile extends StatefulWidget {
   const My_profile({Key? key}) : super(key: key);
 
+  @override
+  State<My_profile> createState() => _My_profileState();
+}
 
+class _My_profileState extends State<My_profile> {
+  String _username = "username";
 
+  Future<String> getUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+    String username = prefs.getString('username') ?? "username";
+    return username;
+  }
+
+  @override
+  void initState() {
+    getUsername().then(updateUsername);
+    // getUsername().then((String username){
+    //   setState(() {
+    //     _username = username;
+    //   });
+    // });
+    super.initState();
+  }
+
+  void updateUsername(String username) {
+    setState(() {
+      _username = username;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        brightness: Brightness.light,
+        primarySwatch: Colors.grey,
+        brightness: Brightness.dark,
       ),
       home: Scaffold(
         appBar: AppBar(title: const Text("Rise HQ")),
-        body:   Align(
+        body: Align(
           alignment: Alignment.topCenter,
-
           child: Column(
             children: [
-              Container(
-              child: Text('Your Profile'), height: 20
-
-      ),
-              Container(
-                  child: FittedBox(
-                    child: Image(image: AssetImage('assets/Logo.jpg'), width: 150, height: 150,),      ),
+              const SizedBox(child: Text('Your Profile'), height: 20),
+              const FittedBox(
+                child: Image(
+                  image: AssetImage('assets/Logo.jpg'),
+                  width: 150,
+                  height: 150,
+                ),
               ),
-
               Container(
-                margin: EdgeInsets.all(11),
+                margin: const EdgeInsets.all(11),
                 child: FlatButton(
-                  child: Text(
+                  child: const Text(
                     'Change your profile picture',
                     style: TextStyle(fontSize: 9.0),
                   ),
@@ -44,40 +70,34 @@ class My_profile extends StatelessWidget {
                 ),
               ),
               Container(
-                  alignment: Alignment(-0.85,0.70),
-                  child: Text('Name'), height: 20
-              ),
+                  alignment: const Alignment(-0.85, 0.70),
+                  child: const Text('Name'),
+                  height: 20),
               Container(
-                  alignment: Alignment(-0.85,0.70),
-
-                  child: Text('Age'), height: 20
-              ),
+                  alignment: Alignment(-0.85, 0.70),
+                  child: Text('Age'),
+                  height: 20),
               Container(
-                  alignment: Alignment(-0.85,0.70),
-
-                  child: Text('Email'), height: 20
-              ),
+                  alignment: Alignment(-0.85, 0.70),
+                  child: Text('Email'),
+                  height: 20),
               Container(
-                  alignment: Alignment(-0.85,0.70),
-
-                  child: Text('Country'), height: 20
-              ),
-
+                  alignment: Alignment(-0.85, 0.70),
+                  child: Text('Country'),
+                  height: 20),
               Container(
-                child: FittedBox(
-                  child: Image(image: AssetImage('assets/Swipe.jpg'), width: 1000, height: 400,fit: BoxFit.contain,),      ),
+                child: const FittedBox(
+                  child: Image(
+                    image: AssetImage('assets/Swipe.jpg'),
+                    width: 1000,
+                    height: 400,
+                    fit: BoxFit.contain,
+                  ),
+                ),
               )
             ],
-
-
           ),
-
         ),
-
-
-
-
-
 
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
@@ -95,11 +115,12 @@ class My_profile extends StatelessWidget {
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: [
-              const SizedBox(
+              SizedBox(
                   height: 100,
                   child: DrawerHeader(
-                    child: Text('Hello NAME',
-                      style: TextStyle(
+                    child: Text(
+                      'Hello $_username',
+                      style: const TextStyle(
                         fontSize: 20.0,
                       ),
                     ),
@@ -111,7 +132,7 @@ class My_profile extends StatelessWidget {
 
                   // ...
                   // Then close the drawer
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
                 },
               ),
               ListTile(

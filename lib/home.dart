@@ -1,28 +1,51 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:rise_hq/my_profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'my_profile.dart';
 import 'login.dart';
 
-
-
 import 'main.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  String _username = "username";
+
+  Future<String> getUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+    String username = prefs.getString('username') ?? "username";
+    return username;
+  }
+
+  @override
+  void initState() {
+    getUsername().then(updateUsername);
+    // getUsername().then((String username){
+    //   setState(() {
+    //     _username = username;
+    //   });
+    // });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        brightness: Brightness.light,
+        primarySwatch: Colors.grey,
+        brightness: Brightness.dark,
       ),
-
-
       home: Scaffold(
         appBar: AppBar(title: const Text("Rise HQ")),
         body: const Center(
-           child: Text("home screen "),
+          child: Text("home screen "),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
@@ -40,11 +63,12 @@ class Home extends StatelessWidget {
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: [
-              const SizedBox(
+              SizedBox(
                   height: 100,
                   child: DrawerHeader(
-                    child: Text('Hello NAME',
-                      style: TextStyle(
+                    child: Text(
+                      "Hello $_username",
+                      style: const TextStyle(
                         fontSize: 20.0,
                       ),
                     ),
@@ -52,16 +76,13 @@ class Home extends StatelessWidget {
               ListTile(
                 title: const Text('Your Profile'),
                 onTap: () {
-
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const My_profile()));
-
-
+                      MaterialPageRoute(
+                          builder: (context) => const My_profile()));
 
                   // var navigationResult = Navigator.push(context,
                   //    MaterialPageRoute(builder: (context) => const My_profile()));
-
                 },
               ),
               ListTile(
@@ -116,5 +137,10 @@ class Home extends StatelessWidget {
       ),
     );
   }
-}
 
+  void updateUsername(String username) {
+    setState(() {
+      _username = username;
+    });
+  }
+}

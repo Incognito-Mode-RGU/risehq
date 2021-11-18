@@ -14,3 +14,8 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+What was used (list not complete, started doing this in sprint3): 
+Store key-value data on disk - https://docs.flutter.dev/cookbook/persistence/key-value
+Retrieve the value of a text field - https://docs.flutter.dev/cookbook/forms/retrieve-input

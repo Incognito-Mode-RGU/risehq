@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home.dart';
 
@@ -85,9 +86,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     // Validate will return true if the form is valid, or false if
                     // the form is invalid.
                     if (_formKey.currentState!.validate()) {
-                      // Process data.
-                      var navigationResult = Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const Home()));
+                      // navigate to home
+                      var navigationResult = Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Home()));
                     }
                   },
                   child: const Text('Log In'),

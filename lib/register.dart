@@ -1,4 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'home.dart';
 
 class Register extends StatelessWidget {
   Register({Key? key}) : super(key: key);
@@ -32,6 +37,24 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  final nameTextFieldController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    nameTextFieldController.dispose();
+    super.dispose();
+  }
+
+  void saveUsername() async {
+    // obtain shared preferences
+    final prefs = await SharedPreferences.getInstance();
+
+    // set value
+    log("username = ${nameTextFieldController.text}");
+    prefs.setString('username', nameTextFieldController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -48,6 +71,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           SizedBox(
               width: 300,
               child: TextFormField(
+                controller: nameTextFieldController,
                 decoration: const InputDecoration(
                   hintText: 'Name',
                 ),
@@ -61,7 +85,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           SizedBox(
               width: 300,
               child: TextFormField(
-
                 decoration: const InputDecoration(
                   hintText: 'Email',
                 ),
@@ -115,6 +138,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     // the form is invalid.
                     if (_formKey.currentState!.validate()) {
                       // Process data.
+                      saveUsername();
+                      var navigationResult = Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Home()));
                     }
                   },
                   child: const Text('Register'),
