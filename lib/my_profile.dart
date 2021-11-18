@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:rise_hq/my_profile.dart';
-import 'my_profile.dart';
-import 'login.dart';
-
-
 
 import 'main.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class My_profile extends StatelessWidget {
+  const My_profile({Key? key}) : super(key: key);
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +15,70 @@ class Home extends StatelessWidget {
         primarySwatch: Colors.blue,
         brightness: Brightness.light,
       ),
-
-
       home: Scaffold(
         appBar: AppBar(title: const Text("Rise HQ")),
-        body: const Center(
-           child: Text("home screen "),
+        body:   Align(
+          alignment: Alignment.topCenter,
+
+          child: Column(
+            children: [
+              Container(
+              child: Text('Your Profile'), height: 20
+
+      ),
+              Container(
+                  child: FittedBox(
+                    child: Image(image: AssetImage('assets/Logo.jpg'), width: 150, height: 150,),      ),
+              ),
+
+              Container(
+                margin: EdgeInsets.all(11),
+                child: FlatButton(
+                  child: Text(
+                    'Change your profile picture',
+                    style: TextStyle(fontSize: 9.0),
+                  ),
+                  color: Colors.blue,
+                  textColor: Colors.black,
+                  onPressed: () {},
+                ),
+              ),
+              Container(
+                  alignment: Alignment(-0.85,0.70),
+                  child: Text('Name'), height: 20
+              ),
+              Container(
+                  alignment: Alignment(-0.85,0.70),
+
+                  child: Text('Age'), height: 20
+              ),
+              Container(
+                  alignment: Alignment(-0.85,0.70),
+
+                  child: Text('Email'), height: 20
+              ),
+              Container(
+                  alignment: Alignment(-0.85,0.70),
+
+                  child: Text('Country'), height: 20
+              ),
+
+              Container(
+                child: FittedBox(
+                  child: Image(image: AssetImage('assets/Swipe.jpg'), width: 1000, height: 400,fit: BoxFit.contain,),      ),
+              )
+            ],
+
+
+          ),
+
         ),
+
+
+
+
+
+
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             var navigationResult = await Navigator.push(context,
@@ -52,16 +107,11 @@ class Home extends StatelessWidget {
               ListTile(
                 title: const Text('Your Profile'),
                 onTap: () {
+                  // Update the state of the app
 
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const My_profile()));
-
-
-
-                  // var navigationResult = Navigator.push(context,
-                  //    MaterialPageRoute(builder: (context) => const My_profile()));
-
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
                 },
               ),
               ListTile(
@@ -117,4 +167,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-

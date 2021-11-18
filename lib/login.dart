@@ -11,7 +11,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.blue,
         brightness: Brightness.dark,
       ),
       home: Scaffold(
