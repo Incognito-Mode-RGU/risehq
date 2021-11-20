@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:rise_hq/sign_up/sign_up_screen1.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home.dart';
@@ -142,7 +143,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       var navigationResult = Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Home()));
+                              builder: (context) => SingUpScreen1()));
                     }
                   },
                   child: const Text('Register'),

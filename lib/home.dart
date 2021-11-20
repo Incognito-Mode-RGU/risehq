@@ -27,11 +27,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     getUsername().then(updateUsername);
-    // getUsername().then((String username){
-    //   setState(() {
-    //     _username = username;
-    //   });
-    // });
     super.initState();
   }
 
