@@ -69,42 +69,48 @@ class _SignUpScreen1State extends State<SingUpScreen1> {
             appBar: AppBar(
                 title: const Text("Start your journey with Rise HQ (1/4)")),
             body: Center(
-                child: Scrollbar(
-                    controller: scrollController,
-                    child: ListView(
+              child: Scrollbar(
+                  controller: scrollController,
+                  child: ListView(
                       controller: scrollController,
                       children: <Widget>[
-                        Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 16.0, horizontal: 16.0),
-                            child: Center(
-                                child: Text(
-                              "Welcome to Rise HQ $_username",
-                              style: Theme.of(context).textTheme.headline5,
-                              textAlign: TextAlign.center,
-                            ))),
-                        Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 16.0, horizontal: 16.0),
-                            child: Text(
-                              'We know you’re unique, and at RISE HQ we’re all about making sure what you see relates to you. So we’d like to take you through some choices so that what you see is what you need.',
-                              style: Theme.of(context).textTheme.bodyText2,
-                            )),
-                        Container(
-                            alignment: Alignment.center,
-                            child: SizedBox(
-                                width: 100,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    var navigationResult = Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SingUpScreen2()));
-                                  },
-                                  child: const Text('Next'),
-                                ))),
-                      ],
-                    )))));
+                  Padding(
+                  padding: const EdgeInsets.fromLTRB(16.0, 100.0, 16.0, 16.0),
+
+                  child: Center(
+                      child: Text(
+                        "Welcome to Rise HQ $_username",
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .headline5,
+                        textAlign: TextAlign.center,
+                      ))),
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 32.0),
+                  child: Text(
+                    'We know you’re unique, and at RISE HQ we’re all about making sure what you see relates to you. So we’d like to take you through some choices so that what you see is what you need.',
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .bodyText1,
+                  )),
+              Container(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                      width: 100,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          var navigationResult = Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                  const SingUpScreen2()));
+                        },
+                        child: const Text('Next'),
+                      ))),
+              ],
+            )))));
   }
 }

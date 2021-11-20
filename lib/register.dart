@@ -52,7 +52,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     final prefs = await SharedPreferences.getInstance();
 
     // set value
-    log("username = ${nameTextFieldController.text}");
+    // log("username = ${nameTextFieldController.text}");
     prefs.setString('username', nameTextFieldController.text);
   }
 

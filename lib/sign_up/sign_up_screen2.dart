@@ -31,6 +31,21 @@ class _SignUpScreen2State extends State<SingUpScreen2> {
     super.initState();
   }
 
+  void saveBodyTopics() async {
+    // obtain shared preferences
+    final prefs = await SharedPreferences.getInstance();
+
+    List<String> selectedTopics = [];
+    for (var i = 0; i < topics.length; i++) {
+      if (_checkedList[i]) {
+        selectedTopics.add(topics[i]);
+      }
+    }
+    // log(selectedTopics.toString());
+    // set value
+    prefs.setStringList("bodyTopics", selectedTopics);
+  }
+
   List<String> topics = [
     "Puberty",
     "Pregnancy",
@@ -65,8 +80,8 @@ class _SignUpScreen2State extends State<SingUpScreen2> {
           brightness: Brightness.dark,
         ),
         home: Scaffold(
-            appBar:
-                AppBar(title: const Text("Start your journey with Rise HQ (2/4)")),
+            appBar: AppBar(
+                title: const Text("Start your journey with Rise HQ (2/4)")),
             body: Scrollbar(
                 controller: scrollController,
                 child: ListView(
@@ -75,18 +90,10 @@ class _SignUpScreen2State extends State<SingUpScreen2> {
                     Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 16.0, horizontal: 16.0),
-                        child: Center(
-                            child: Text(
-                          "Welcome to Rise HQ $_username",
-                          style: Theme.of(context).textTheme.headline5,
-                          textAlign: TextAlign.center,
-                        ))),
-                    Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 16.0, horizontal: 16.0),
                         child: Text(
                           'First choose your body topics:',
-                          style: Theme.of(context).textTheme.bodyText2,
+                          style: Theme.of(context).textTheme.headline6,
+                          textAlign: TextAlign.center,
                         )),
                     Padding(
                         padding: const EdgeInsets.symmetric(),
@@ -187,6 +194,22 @@ class _SignUpScreen2State extends State<SingUpScreen2> {
                             });
                           },
                         )),
+                    Container(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                            width: 100,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                saveBodyTopics();
+
+                                var navigationResult = Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SingUpScreen2()));
+                              },
+                              child: const Text('Next'),
+                            ))),
                   ],
                 ))));
   }
