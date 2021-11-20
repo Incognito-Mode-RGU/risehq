@@ -1,17 +1,18 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:rise_hq/sign_up/sign_up_screen3.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SingUpScreen2 extends StatefulWidget {
-  const SingUpScreen2({Key? key}) : super(key: key);
+import 'sign_up_screen4.dart';
+
+class SingUpScreen3 extends StatefulWidget {
+  const SingUpScreen3({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _SignUpScreen2State();
+  State<StatefulWidget> createState() => _SignUpScreen3State();
 }
 
-class _SignUpScreen2State extends State<SingUpScreen2> {
+class _SignUpScreen3State extends State<SingUpScreen3> {
   String _username = "username";
 
   Future<String> getUsername() async {
@@ -32,7 +33,7 @@ class _SignUpScreen2State extends State<SingUpScreen2> {
     super.initState();
   }
 
-  void saveBodyTopics() async {
+  void saveLifeTopics() async {
     // obtain shared preferences
     final prefs = await SharedPreferences.getInstance();
 
@@ -44,19 +45,19 @@ class _SignUpScreen2State extends State<SingUpScreen2> {
     }
     // log(selectedTopics.toString());
     // set value
-    prefs.setStringList("bodyTopics", selectedTopics);
+    prefs.setStringList("lifeTopics", selectedTopics);
   }
 
   List<String> topics = [
-    "Puberty",
-    "Pregnancy",
-    "Periods",
-    "Post fertility",
-    "Hormones",
-    "Infertility",
-    "Pregnancy loss",
-    "Contraception",
-    "Fertility"
+    "Pensions",
+    "Sex",
+    "Body health",
+    "Fitness",
+    "Food",
+    "Mental health",
+    "Finances",
+    "Parenthood",
+    "Relationships"
   ];
 
   final List<bool> _checkedList = [
@@ -82,7 +83,7 @@ class _SignUpScreen2State extends State<SingUpScreen2> {
         ),
         home: Scaffold(
             appBar: AppBar(
-                title: const Text("Start your journey with Rise HQ (2/4)")),
+                title: const Text("Start your journey with Rise HQ (3/4)")),
             body: Scrollbar(
                 controller: scrollController,
                 child: ListView(
@@ -92,7 +93,7 @@ class _SignUpScreen2State extends State<SingUpScreen2> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 16.0, horizontal: 16.0),
                         child: Text(
-                          'First choose your body topics:',
+                          'Lastly What would you like to know more about in your life?',
                           style: Theme.of(context).textTheme.headline6,
                           textAlign: TextAlign.center,
                         )),
@@ -201,13 +202,13 @@ class _SignUpScreen2State extends State<SingUpScreen2> {
                             width: 100,
                             child: ElevatedButton(
                               onPressed: () {
-                                saveBodyTopics();
+                                saveLifeTopics();
 
                                 var navigationResult = Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const SingUpScreen3()));
+                                            const SingUpScreen4()));
                               },
                               child: const Text('Next'),
                             ))),
