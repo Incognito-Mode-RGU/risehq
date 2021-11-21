@@ -39,6 +39,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final nameTextFieldController = TextEditingController();
+  final emailTextFieldController = TextEditingController();
 
   @override
   void dispose() {
@@ -47,13 +48,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     super.dispose();
   }
 
-  void saveUsername() async {
+  void saveUserData() async {
     // obtain shared preferences
     final prefs = await SharedPreferences.getInstance();
 
     // set value
     // log("username = ${nameTextFieldController.text}");
     prefs.setString('username', nameTextFieldController.text);
+    prefs.setString('email', emailTextFieldController.text);
   }
 
   @override
@@ -86,6 +88,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           SizedBox(
               width: 300,
               child: TextFormField(
+                controller: emailTextFieldController,
                 decoration: const InputDecoration(
                   hintText: 'Email',
                 ),
@@ -139,7 +142,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     // the form is invalid.
                     if (_formKey.currentState!.validate()) {
                       // Process data.
-                      saveUsername();
+                      saveUserData();
                       var navigationResult = Navigator.push(
                           context,
                           MaterialPageRoute(

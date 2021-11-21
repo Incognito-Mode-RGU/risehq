@@ -65,7 +65,7 @@ class _SignUpScreen4State extends State<SingUpScreen4> {
                                 vertical: 16.0, horizontal: 32.0),
                             child: Text(
                               'We know life’s a journey and things change. If they do you can update your preferences anytime in your settings.',
-                              style: Theme.of(context).textTheme.headline5,
+                              style: Theme.of(context).textTheme.headline6,
                               textAlign: TextAlign.center,
                             )),
                         Container(

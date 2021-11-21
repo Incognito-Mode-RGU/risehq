@@ -12,6 +12,9 @@ class My_profile extends StatefulWidget {
 
 class _My_profileState extends State<My_profile> {
   String _username = "username";
+  String _email = "email@gmail.com";
+  List<String> _bodyTopics = [];
+  List<String> _lifeTopics = [];
 
   Future<String> getUsername() async {
     final prefs = await SharedPreferences.getInstance();
@@ -19,9 +22,31 @@ class _My_profileState extends State<My_profile> {
     return username;
   }
 
+  Future<String> getEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    String email = prefs.getString('email') ?? "email";
+    return email;
+  }
+
+  Future<List<String>> getBodyTopics() async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> bodyTopics = prefs.getStringList('bodyTopics') ?? [];
+    return bodyTopics;
+  }
+
+  Future<List<String>> getLifeTopics() async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> lifeTopics = prefs.getStringList('lifeTopics') ?? [];
+    return lifeTopics;
+  }
+
   @override
   void initState() {
     getUsername().then(updateUsername);
+    getEmail().then(updateEmail);
+    getBodyTopics().then(updateBodyTopics);
+    getLifeTopics().then(updateLifeTopics);
+
     // getUsername().then((String username){
     //   setState(() {
     //     _username = username;
@@ -36,6 +61,34 @@ class _My_profileState extends State<My_profile> {
     });
   }
 
+  void updateEmail(String email) {
+    setState(() {
+      _email = email;
+    });
+  }
+
+  void updateBodyTopics(List<String> bodyTopics) {
+    setState(() {
+      _bodyTopics = bodyTopics;
+    });
+  }
+
+  void updateLifeTopics(List<String> lifeTopics) {
+    setState(() {
+      _lifeTopics = lifeTopics;
+    });
+  }
+
+  String prettyList(List<String> list) {
+    String x = "";
+    for (var i = 0; i < list.length; i++) {
+      x += "${list[i]}, ";
+    }
+    return x;
+  }
+
+  final scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,58 +98,86 @@ class _My_profileState extends State<My_profile> {
       ),
       home: Scaffold(
         appBar: AppBar(title: const Text("Rise HQ")),
-        body: Align(
-          alignment: Alignment.topCenter,
-          child: Column(
-            children: [
-              const SizedBox(child: Text('Your Profile'), height: 20),
-              const FittedBox(
-                child: Image(
-                  image: AssetImage('assets/Logo.jpg'),
-                  width: 150,
-                  height: 150,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(11),
-                child: FlatButton(
-                  child: const Text(
-                    'Change your profile picture',
-                    style: TextStyle(fontSize: 9.0),
+        body: Scrollbar(
+          controller: scrollController,
+          child: ListView(controller: scrollController, children: <Widget>[
+            Align(
+              alignment: Alignment.topCenter,
+              child: Column(
+                children: [
+                  const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.0),
+                      child: SizedBox(child: Text('Your Profile'))),
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(48.0),
+                      child: const Image(
+                        image: AssetImage('assets/Logo.jpg'),
+                        width: 150,
+                        height: 150,
+                      )),
+                  Container(
+                    margin: const EdgeInsets.all(11),
+                    child: ElevatedButton(
+                      child: const Text(
+                        'Change your profile picture',
+                      ),
+                      onPressed: () {},
+                    ),
                   ),
-                  color: Colors.blue,
-                  textColor: Colors.black,
-                  onPressed: () {},
-                ),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 16.0),
+                      child: Text(
+                        'Name: $_username',
+                        style: Theme.of(context).textTheme.headline6,
+                        textAlign: TextAlign.center,
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 16.0),
+                      child: Text(
+                        'Email: $_email',
+                        style: Theme.of(context).textTheme.headline6,
+                        textAlign: TextAlign.center,
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 16.0),
+                      child: Text(
+                        'Your body topics: ${prettyList(_bodyTopics)}',
+                        style: Theme.of(context).textTheme.headline6,
+                        textAlign: TextAlign.center,
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 16.0),
+                      child: Text(
+                        'Your life topics: ${prettyList(_lifeTopics)}',
+                        style: Theme.of(context).textTheme.headline6,
+                        textAlign: TextAlign.center,
+                      )),
+                  Container(
+                      alignment: const Alignment(-0.85, 0.70),
+                      child: Text('Name $_username'),
+                      height: 20),
+                  Container(
+                      alignment: const Alignment(-0.85, 0.70),
+                      child: Text('Email $_email'),
+                      height: 20),
+                  Container(
+                    child: const FittedBox(
+                      child: Image(
+                        image: AssetImage('assets/Swipe.jpg'),
+                        width: 1000,
+                        height: 400,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  )
+                ],
               ),
-              Container(
-                  alignment: const Alignment(-0.85, 0.70),
-                  child: const Text('Name'),
-                  height: 20),
-              Container(
-                  alignment: Alignment(-0.85, 0.70),
-                  child: Text('Age'),
-                  height: 20),
-              Container(
-                  alignment: Alignment(-0.85, 0.70),
-                  child: Text('Email'),
-                  height: 20),
-              Container(
-                  alignment: Alignment(-0.85, 0.70),
-                  child: Text('Country'),
-                  height: 20),
-              Container(
-                child: const FittedBox(
-                  child: Image(
-                    image: AssetImage('assets/Swipe.jpg'),
-                    width: 1000,
-                    height: 400,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              )
-            ],
-          ),
+            ),
+          ]),
         ),
 
         floatingActionButton: FloatingActionButton(
