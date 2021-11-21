@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         // primarySwatch: Colors.blue, #D0CECE
         primarySwatch: Colors.grey,
         brightness: Brightness.dark,
+        fontFamily: 'Gordita',
       ),
       home: const MyHomePage(title: 'Rise HQ'),
     );
@@ -104,15 +105,18 @@ class _MyHomePageState extends State<MyHomePage> {
               'Rise HQ',
               style: Theme.of(context).textTheme.headline4,
             ),
-            SizedBox(
-                width: 100,
-                child: ElevatedButton(
-                  onPressed: () {
-                    var navigationResult = Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Login()));
-                  },
-                  child: const Text('Login'),
-                )),
+            Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                child: SizedBox(
+                    width: 100,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        var navigationResult = Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Login()));
+                      },
+                      child: const Text('Login'),
+                    ))),
             SizedBox(
                 width: 100,
                 child: ElevatedButton(

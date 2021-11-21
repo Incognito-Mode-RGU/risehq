@@ -17,6 +17,8 @@ class Register extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
         brightness: Brightness.dark,
+        fontFamily: 'Gordita',
+
       ),
       home: Scaffold(
         appBar: AppBar(title: const Text("Register")),

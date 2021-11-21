@@ -95,6 +95,7 @@ class _My_profileState extends State<My_profile> {
       theme: ThemeData(
         primarySwatch: Colors.grey,
         brightness: Brightness.dark,
+        fontFamily: 'Gordita',
       ),
       home: Scaffold(
         appBar: AppBar(title: const Text("Rise HQ")),
@@ -105,9 +106,13 @@ class _My_profileState extends State<My_profile> {
               alignment: Alignment.topCenter,
               child: Column(
                 children: [
-                  const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: SizedBox(child: Text('Your Profile'))),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: SizedBox(
+                          child: Text(
+                        'Your Profile',
+                        style: Theme.of(context).textTheme.headline5,
+                      ))),
                   ClipRRect(
                       borderRadius: BorderRadius.circular(48.0),
                       child: const Image(
@@ -157,23 +162,25 @@ class _My_profileState extends State<My_profile> {
                         textAlign: TextAlign.center,
                       )),
                   Container(
-                      alignment: const Alignment(-0.85, 0.70),
-                      child: Text('Name $_username'),
-                      height: 20),
-                  Container(
-                      alignment: const Alignment(-0.85, 0.70),
-                      child: Text('Email $_email'),
-                      height: 20),
-                  Container(
-                    child: const FittedBox(
-                      child: Image(
-                        image: AssetImage('assets/Swipe.jpg'),
-                        width: 1000,
-                        height: 400,
-                        fit: BoxFit.contain,
+                    margin: const EdgeInsets.all(11),
+                    child: ElevatedButton(
+                      child: const Text(
+                        'Change your preferences',
                       ),
+                      onPressed: () {},
                     ),
-                  )
+                  ),
+
+                  // Container(
+                  //   child: const FittedBox(
+                  //     child: Image(
+                  //       image: AssetImage('assets/Swipe.jpg'),
+                  //       width: 1000,
+                  //       height: 400,
+                  //       fit: BoxFit.contain,
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ),

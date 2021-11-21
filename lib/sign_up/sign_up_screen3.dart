@@ -80,10 +80,12 @@ class _SignUpScreen3State extends State<SingUpScreen3> {
         theme: ThemeData(
           primarySwatch: Colors.grey,
           brightness: Brightness.dark,
+          fontFamily: 'Gordita',
+
         ),
         home: Scaffold(
             appBar: AppBar(
-                title: const Text("Start your journey with Rise HQ (3/4)")),
+                title: const Text("Start your journey (3/4)")),
             body: Scrollbar(
                 controller: scrollController,
                 child: ListView(

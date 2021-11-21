@@ -41,10 +41,11 @@ class _SignUpScreen4State extends State<SingUpScreen4> {
         theme: ThemeData(
           primarySwatch: Colors.grey,
           brightness: Brightness.dark,
+          fontFamily: 'Gordita',
         ),
         home: Scaffold(
             appBar: AppBar(
-                title: const Text("Start your journey with Rise HQ (4/4)")),
+                title: const Text("Start your journey (4/4)")),
             body: Center(
                 child: Scrollbar(
                     controller: scrollController,
@@ -80,8 +81,10 @@ class _SignUpScreen4State extends State<SingUpScreen4> {
                                             builder: (context) =>
                                                 const Home()));
                                   },
-                                  child: const Text('Start your journey',
-                                    textAlign: TextAlign.center,),
+                                  child: const Text(
+                                    'Start your journey',
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ))),
                       ],
                     )))));

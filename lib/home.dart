@@ -36,6 +36,8 @@ class _HomeState extends State<Home> {
       theme: ThemeData(
         primarySwatch: Colors.grey,
         brightness: Brightness.dark,
+        fontFamily: 'Gordita',
+
       ),
       home: Scaffold(
         appBar: AppBar(title: const Text("Rise HQ")),
